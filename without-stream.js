@@ -7,7 +7,7 @@ var FormData = require("form-data");
 var app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
-app.post("/1", upload.single("file"), (req, res) => {
+app.post("/1", upload.single('file'), (req, res) => {
   const formData = new FormData();
   formData.append('file', req.file.buffer);
 
