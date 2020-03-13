@@ -4,12 +4,15 @@ var fs = require("fs");
 var app = express();
 
 app.post("/2", (req, res) => {
-  const stream = fs.createWriteStream("test.csv");
+  const stream = fs.createWriteStream('test.csv');
   req.pipe(stream);
 
-  stream.on('finish', function () {
-    console.log('stream do server 2');
+  req.on('end', function () {
     res.send('resposta do server 2');
+  });
+
+  req.on('error', function () {
+    res.send('error');
   });
 });
 
